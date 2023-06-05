@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    env_file: .env
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/app
+      - node-modules:/app/node_modules
+    command:
+      npm start
+
+volumes:
+  node-modules:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/node_modules
+      o: bind
