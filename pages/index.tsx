@@ -1,6 +1,5 @@
 // common
 import { useEffect, useState } from 'react'
-import dynamic from 'next/dynamic'
 
 // package
 import { useFieldExtension } from 'microcms-field-extension-react'
@@ -14,7 +13,7 @@ const Page = () => {
 
   const { data, sendMessage } = useFieldExtension('', {
     origin: process.env.NEXT_PUBLIC_MICROCMS_ORIGIN,
-    height: 542,
+    height: 600,
   })
 
   useEffect(() => {
@@ -30,7 +29,12 @@ const Page = () => {
 
   return (
     <div data-color-mode='light'>
-      <MdEditor modelValue={markdown || ''} onChange={handleChange} language='en-US' />
+      <MdEditor
+        modelValue={markdown || ''}
+        onChange={handleChange}
+        language='en-US'
+        style={{ height: 600 }}
+      />
     </div>
   )
 }
