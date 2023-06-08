@@ -4,16 +4,10 @@ import dynamic from 'next/dynamic'
 
 // package
 import { useFieldExtension } from 'microcms-field-extension-react'
+import { MdEditor } from 'md-editor-rt'
 
 // styles
-import '@uiw/react-md-editor/markdown-editor.css'
-import '@uiw/react-markdown-preview/markdown.css'
-
-// react-md-editorがSSR非対応のためdynamicインポートで対応
-const MDEditor = dynamic(() => import('@uiw/react-md-editor'), {
-  ssr: false,
-  loading: () => <div>loading...</div>,
-})
+import 'md-editor-rt/lib/style.css'
 
 const Page = () => {
   const [markdown, setMarkdown] = useState<string | undefined>()
@@ -35,8 +29,8 @@ const Page = () => {
   }
 
   return (
-    <div data-color-mode='light' style={{ border: '1px solid #cdcde0', borderRadius: '4px' }}>
-      <MDEditor value={markdown} onChange={(value) => handleChange(value)} height={540} />
+    <div data-color-mode='light'>
+      <MdEditor modelValue={markdown || ''} onChange={handleChange} language='en-US' />
     </div>
   )
 }
