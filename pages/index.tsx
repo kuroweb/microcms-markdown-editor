@@ -9,7 +9,7 @@ import { MdEditor } from 'md-editor-rt'
 import 'md-editor-rt/lib/style.css'
 
 const Page = () => {
-  const [markdown, setMarkdown] = useState<string | undefined>()
+  const [markdown, setMarkdown] = useState<string>('')
 
   const { data, sendMessage } = useFieldExtension('', {
     origin: process.env.NEXT_PUBLIC_MICROCMS_ORIGIN,
@@ -22,7 +22,7 @@ const Page = () => {
     }
   }, [data, markdown])
 
-  const handleChange = (value: string | undefined) => {
+  const handleChange = (value: string) => {
     setMarkdown(value)
     sendMessage({ data: value })
   }
@@ -30,7 +30,7 @@ const Page = () => {
   return (
     <div data-color-mode='light'>
       <MdEditor
-        modelValue={markdown || ''}
+        modelValue={markdown}
         onChange={handleChange}
         language='en-US'
         style={{ height: 600 }}
