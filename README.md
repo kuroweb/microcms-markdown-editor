@@ -1,31 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# microcms-markdown-editor
 
-## Getting Started
+microCMSの拡張フィールドとして、Markdown入力フォームを提供するアプリケーション.
 
-First, run the development server:
+`md-editor-rt`をエディタとして利用することで、mermaid記法によるプレビューを表示できる.
 
-```bash
-npm run dev
-# or
-yarn dev
+## Install
+
+### 1. .envを作成
+
+`.env.example`を参考に`.env`を作成.
+
+```
+# .env
+NEXT_PUBLIC_MICROCMS_ORIGIN="https://hogehoge.microcms.io"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. node_modulesフォルダを作成
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Docker Componse で node_modules ボリュームをバインドするために必要.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```
+./
+  ├─ pages
+  ├─ node_modules // このフォルダを作成
+  └─ ...
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 3. Dockerイメージをビルド
 
-## Learn More
+```
+docker compose build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 4. アプリケーションを起動
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+docker compose up -d
+docker attach $(docker compose ps -q web)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 5. エディタを表示
+
+`http://localhost:3000`
 
 ## Deploy on Vercel
 
