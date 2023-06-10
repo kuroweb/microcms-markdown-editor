@@ -2,7 +2,7 @@
 
 microCMSの拡張フィールドとして、Markdown入力フォームを提供するアプリケーション.
 
-`md-editor-rt`をエディタとして利用することで、mermaid記法によるプレビューを表示できる.
+[md-editor-rt](https://github.com/imzbf/md-editor-rt)をエディタとして利用することで、mermaid記法によるプレビューを表示できる.
 
 ## Install
 
@@ -41,7 +41,7 @@ docker attach $(docker compose ps -q web)
 
 ### 5. エディタを表示
 
-`http://localhost:3000`
+http://localhost:3000
 
 ## Deploy on Vercel
 
