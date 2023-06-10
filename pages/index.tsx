@@ -17,21 +17,20 @@ const Page = () => {
   })
 
   useEffect(() => {
-    if (!markdown) {
+    if (data) {
       setMarkdown(data)
     }
-  }, [data, markdown])
+  }, [data])
 
-  const handleChange = (value: string) => {
-    setMarkdown(value)
-    sendMessage({ data: value })
-  }
+  useEffect(() => {
+    sendMessage({ data: markdown })
+  }, [markdown, sendMessage])
 
   return (
     <div data-color-mode='light'>
       <MdEditor
         modelValue={markdown}
-        onChange={handleChange}
+        onChange={(value) => setMarkdown(value)}
         language='en-US'
         style={{ height: 600 }}
       />
